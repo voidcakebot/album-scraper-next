@@ -60,6 +60,11 @@ h1 { margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); }
 h2 { margin: 0 0 8px; font-size: 1.35rem; }
 .heroText { max-width: 58ch; margin-top: 12px; }
 
+.urlFormWrap {
+  display: grid;
+  gap: 12px;
+}
+
 .urlForm {
   background: rgba(10, 16, 31, 0.8);
   border: 1px solid var(--border);
@@ -105,6 +110,7 @@ h2 { margin: 0 0 8px; font-size: 1.35rem; }
 }
 
 .goButton:hover { filter: brightness(1.05); }
+.goButton:disabled { opacity: 0.65; cursor: progress; }
 
 .hintText,
 .errorText {
@@ -129,7 +135,8 @@ h2 { margin: 0 0 8px; font-size: 1.35rem; }
   gap: 16px;
 }
 
-.card {
+.card,
+.resultCard {
   background: linear-gradient(170deg, var(--panel), var(--panel-2));
   border: 1px solid var(--border);
   border-radius: 14px;

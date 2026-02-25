@@ -12,8 +12,8 @@ export default async function HomePage() {
           <p className="eyebrow">Album Scraper</p>
           <h1>Modern Album Dashboard</h1>
           <p className="muted heroText">
-            Scrape deine Albumseiten per CLI und browse die Ergebnisse hier. Unten kannst du direkt eine URL
-            eingeben und mit <strong>Go</strong> öffnen.
+            Scrape deine Albumseiten per CLI und browse die Ergebnisse hier. Du kannst außerdem direkt eine URL
+            einfügen und mit <strong>Go</strong> live serverseitig scrapen.
           </p>
         </div>
         <UrlGoForm />

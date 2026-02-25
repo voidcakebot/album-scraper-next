@@ -7,9 +7,10 @@ CLI + Next.js Web-UI zum Scrapen und Anzeigen von Albumdaten.
 - Scraping mit `fetch` + `cheerio`
 - Robuste Heuristiken für Cover, Albumtitel und Artist
 - Speichert Ergebnisse nach `data/albums.json`
-- Next.js (App Router, TypeScript) zeigt Daten als Grid + Detailseite
+- Next.js (App Router, TypeScript) zeigt Daten als Grid
+- Web-UI: URL eingeben + Go -> serverseitiger Live-Scrape über `/api/scrape`
 - Tests mit Mocha
-- CI + GitHub Pages Deploy Workflows enthalten
+- CI-Workflow enthalten (Pages ist für dynamische API-Nutzung deaktiviert)
 
 ## Quickstart
 ```bash

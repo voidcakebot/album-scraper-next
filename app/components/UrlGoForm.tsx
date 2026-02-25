@@ -1,42 +1,97 @@
 'use client';
 
+import Image from 'next/image';
 import { FormEvent, useState } from 'react';
+
+type Album = {
+  sourceUrl: string;
+  albumTitle: string;
+  artistName: string;
+  coverImageUrl: string;
+  scrapedAt: string;
+};
 
 export default function UrlGoForm() {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState<Album | null>(null);
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError('');
+    setResult(null);
+    setIsLoading(true);
+
     try {
-      const parsed = new URL(url);
-      setError('');
-      window.open(parsed.toString(), '_blank', 'noopener,noreferrer');
-    } catch {
-      setError('Bitte gib eine gültige URL ein (inkl. http/https).');
+      const response = await fetch('/api/scrape', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ url, timeout: 15000 })
+      });
+
+      const payload = (await response.json()) as { album?: Album; error?: string };
+
+      if (!response.ok || !payload.album) {
+        throw new Error(payload.error ?? 'Scraping failed.');
+      }
+
+      setResult(payload.album);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unbekannter Fehler.';
+      setError(message);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
-    <form className="urlForm" onSubmit={onSubmit}>
-      <label htmlFor="album-url" className="label">
-        Album-URL testen
-      </label>
-      <div className="inputRow">
-        <input
-          id="album-url"
-          type="url"
-          placeholder="https://example.com/album"
-          value={url}
-          onChange={(event) => setUrl(event.target.value)}
-          className="urlInput"
-          required
-        />
-        <button type="submit" className="goButton">
-          Go
-        </button>
-      </div>
-      {error ? <p className="errorText">{error}</p> : <p className="hintText">Öffnet die URL in einem neuen Tab.</p>}
-    </form>
+    <div className="urlFormWrap">
+      <form className="urlForm" onSubmit={onSubmit}>
+        <label htmlFor="album-url" className="label">
+          Album-URL live scrapen
+        </label>
+        <div className="inputRow">
+          <input
+            id="album-url"
+            type="url"
+            placeholder="https://example.com/album"
+            value={url}
+            onChange={(event) => setUrl(event.target.value)}
+            className="urlInput"
+            required
+          />
+          <button type="submit" className="goButton" disabled={isLoading}>
+            {isLoading ? '…' : 'Go'}
+          </button>
+        </div>
+        {error ? (
+          <p className="errorText">{error}</p>
+        ) : (
+          <p className="hintText">Extrahiert Cover, Albumtitel und Artist serverseitig.</p>
+        )}
+      </form>
+
+      {result ? (
+        <article className="resultCard">
+          <Image
+            src={result.coverImageUrl}
+            alt={`${result.albumTitle} Cover`}
+            width={420}
+            height={420}
+            style={{ width: '100%', height: 'auto' }}
+          />
+          <div className="cardBody">
+            <h3>{result.albumTitle}</h3>
+            <p className="muted">{result.artistName}</p>
+            <p>
+              <a href={result.sourceUrl} target="_blank" rel="noreferrer noopener">
+                Quelle öffnen ↗
+              </a>
+            </p>
+          </div>
+        </article>
+      ) : null}
+    </div>
   );
 }
