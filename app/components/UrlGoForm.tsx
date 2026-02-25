@@ -11,7 +11,7 @@ type Album = {
   scrapedAt: string;
 };
 
-export default function UrlGoForm() {
+export default function UrlGoForm({ onResultsChange }: { onResultsChange?: (albums: Album[]) => void }) {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +37,7 @@ export default function UrlGoForm() {
       }
 
       setResults(payload.albums);
+      onResultsChange?.(payload.albums);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unbekannter Fehler.';
       setError(message);

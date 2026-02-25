@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 type ApiResult = {
   summary: {
@@ -18,14 +18,26 @@ type ApiResult = {
   }>;
 };
 
+type Props = {
+  inputText?: string;
+  onInputTextChange?: (value: string) => void;
+};
+
 const EXAMPLE = `Converge | Love Is Not Enough\nMol | Dreamcrush`;
 
-export default function SpotifyAddForm() {
-  const [inputText, setInputText] = useState(EXAMPLE);
+export default function SpotifyAddForm({ inputText, onInputTextChange }: Props) {
+  const [localInputText, setLocalInputText] = useState(EXAMPLE);
   const [dryRun, setDryRun] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<ApiResult | null>(null);
+
+  const value = useMemo(() => inputText ?? localInputText, [inputText, localInputText]);
+
+  function setValue(next: string) {
+    if (onInputTextChange) onInputTextChange(next);
+    else setLocalInputText(next);
+  }
 
   async function run() {
     setLoading(true);
@@ -36,7 +48,7 @@ export default function SpotifyAddForm() {
       const response = await fetch('/api/spotify/add-albums', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ inputText, dryRun, concurrency: 3, timeoutMs: 15000 })
+        body: JSON.stringify({ inputText: value, dryRun, concurrency: 3, timeoutMs: 15000 })
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error ?? 'Request failed');
@@ -53,8 +65,8 @@ export default function SpotifyAddForm() {
       <h3 style={{ marginTop: 0 }}>Spotify Add-Albums Tester</h3>
       <p className="hintText">Format pro Zeile: <code>Artist | Album</code></p>
       <textarea
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         className="urlInput"
         rows={6}
         style={{ width: '100%', marginBottom: 10 }}

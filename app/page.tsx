@@ -1,5 +1,4 @@
-import UrlGoForm from './components/UrlGoForm';
-import SpotifyAddForm from './components/SpotifyAddForm';
+import WorkflowPanel from './components/WorkflowPanel';
 
 export default function HomePage() {
   return (
@@ -10,10 +9,9 @@ export default function HomePage() {
           <h1>Spotify Album Intake</h1>
           <p className="muted heroText">
             Gib eine URL ein und ich extrahiere Cover, Albumtitel und Artist direkt serverseitig.
-            Die Ergebnisse werden nur temporär angezeigt und nicht dauerhaft gespeichert.
+            Danach übernehme ich die Treffer automatisch in das Spotify-Inputfeld darunter.
           </p>
         </div>
-        <UrlGoForm />
       </section>
 
       <section className="emptyState">
@@ -23,7 +21,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      <SpotifyAddForm />
+      <WorkflowPanel />
     </main>
   );
 }
