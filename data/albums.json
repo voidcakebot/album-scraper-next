@@ -1,1 +1,170 @@
-[]
+[
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/536014/Converge-Love-Is-Not-Enough/",
+    "albumTitle": "Love Is Not Enough",
+    "artistName": "Converge",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/536014.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/537382/Fossilization-Advent-of-Wounds/",
+    "albumTitle": "Advent of Wounds",
+    "artistName": "Fossilization",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/537382.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/533189/Joyce-Manor-I-Used-To-Go-To-This-Bar/",
+    "albumTitle": "I Used To Go To This Bar",
+    "artistName": "Joyce Manor",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/533189.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/540840/Mol-Dreamcrush/",
+    "albumTitle": "Dreamcrush",
+    "artistName": "Mol",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/540840.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/540399/Hallas-Panorama/",
+    "albumTitle": "Panorama",
+    "artistName": "Hallas",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/540399.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/535593/Blackwater-Holylight-Not-Here-Not-Gone/",
+    "albumTitle": "Not Here Not Gone",
+    "artistName": "Blackwater Holylight",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/535593.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/537500/Fleshvessel-Obstinacy-Sisyphean-Dreams-Unfolded/",
+    "albumTitle": "Obstinacy: Sisyphean Dreams Unfolded",
+    "artistName": "Fleshvessel",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/537500.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/531778/HEALTH-Conflict-DLC/",
+    "albumTitle": "Conflict DLC",
+    "artistName": "HEALTH",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/531778.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/536112/Dead-and-Dripping-Nefarious-Scintillations/",
+    "albumTitle": "Nefarious Scintillations",
+    "artistName": "Dead and Dripping",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/536112.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/531514/Blut-Aus-Nord-Ethereal-Horizons/",
+    "albumTitle": "Ethereal Horizons",
+    "artistName": "Blut Aus Nord",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/531514.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/534085/Oneohtrix-Point-Never-Tranquilizer/",
+    "albumTitle": "Tranquilizer",
+    "artistName": "Oneohtrix Point Never",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/534085.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/534902/Veilburner-Longing-for-Triumph-Reeking-of-Tragedy/",
+    "albumTitle": "Longing for Triumph, Reeking of Tragedy",
+    "artistName": "Veilburner",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/534902.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/523781/Kauan-Wayhome/",
+    "albumTitle": "Wayhome",
+    "artistName": "Kauan",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/523781.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/534095/Rosalia-Lux/",
+    "albumTitle": "Lux",
+    "artistName": "Rosalia",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/534095.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/530547/Anna-von-Hausswolff-Iconoclasts/",
+    "albumTitle": "Iconoclasts",
+    "artistName": "Anna von Hausswolff",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/530547.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/530228/Coroner-Dissonance-Theory/",
+    "albumTitle": "Dissonance Theory",
+    "artistName": "Coroner",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/530228.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/529745/An-Abstract-Illusion-The-Sleeping-City/",
+    "albumTitle": "The Sleeping City",
+    "artistName": "An Abstract Illusion",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/529745.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/529241/Greyhaven-Keep-It-Quiet/",
+    "albumTitle": "Keep It Quiet",
+    "artistName": "Greyhaven",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/529241.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/529170/Thrice-Horizons-West/",
+    "albumTitle": "Horizons/West",
+    "artistName": "Thrice",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/529170.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/530087/Raphael-Weinroth-Browne-Lifeblood/",
+    "albumTitle": "Lifeblood",
+    "artistName": "Raphael Weinroth-Browne",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/530087.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/529729/Hooded-Menace-Lachrymose-Monuments-of-Obscuration/",
+    "albumTitle": "Lachrymose Monuments of Obscuration",
+    "artistName": "Hooded Menace",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/529729.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/532886/Post-Heaven-The-Space-Thats-In-Between/",
+    "albumTitle": "The Space That's In Between",
+    "artistName": "Post Heaven",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/532886.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/532952/Old-Sorcery-The-Escapist/",
+    "albumTitle": "The Escapist",
+    "artistName": "Old Sorcery",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/532952.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  },
+  {
+    "sourceUrl": "https://www.sputnikmusic.com/album/528510/Geese-Getting-Killed/",
+    "albumTitle": "Getting Killed",
+    "artistName": "Geese",
+    "coverImageUrl": "https://www.sputnikmusic.com/images/albums/528510.jpg-thumbl",
+    "scrapedAt": "2026-02-25T18:43:01.648Z"
+  }
+]

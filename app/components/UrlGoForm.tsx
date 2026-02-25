@@ -15,12 +15,12 @@ export default function UrlGoForm() {
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<Album | null>(null);
+  const [results, setResults] = useState<Album[]>([]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError('');
-    setResult(null);
+    setResults([]);
     setIsLoading(true);
 
     try {
@@ -30,13 +30,13 @@ export default function UrlGoForm() {
         body: JSON.stringify({ url, timeout: 15000 })
       });
 
-      const payload = (await response.json()) as { album?: Album; error?: string };
+      const payload = (await response.json()) as { albums?: Album[]; error?: string };
 
-      if (!response.ok || !payload.album) {
+      if (!response.ok || !payload.albums || payload.albums.length === 0) {
         throw new Error(payload.error ?? 'Scraping failed.');
       }
 
-      setResult(payload.album);
+      setResults(payload.albums);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unbekannter Fehler.';
       setError(message);
@@ -72,25 +72,32 @@ export default function UrlGoForm() {
         )}
       </form>
 
-      {result ? (
-        <article className="resultCard">
-          <Image
-            src={result.coverImageUrl}
-            alt={`${result.albumTitle} Cover`}
-            width={420}
-            height={420}
-            style={{ width: '100%', height: 'auto' }}
-          />
-          <div className="cardBody">
-            <h3>{result.albumTitle}</h3>
-            <p className="muted">{result.artistName}</p>
-            <p>
-              <a href={result.sourceUrl} target="_blank" rel="noreferrer noopener">
-                Quelle öffnen ↗
-              </a>
-            </p>
-          </div>
-        </article>
+      {results.length > 0 ? (
+        <>
+          <p className="muted">Gefundene Alben: {results.length}</p>
+          <section className="resultGrid">
+            {results.map((result, idx) => (
+              <article className="resultCard" key={`${result.sourceUrl}-${idx}`}>
+                <Image
+                  src={result.coverImageUrl}
+                  alt={`${result.albumTitle} Cover`}
+                  width={420}
+                  height={420}
+                  style={{ width: '100%', height: 'auto' }}
+                />
+                <div className="cardBody">
+                  <h3>{result.albumTitle}</h3>
+                  <p className="muted">{result.artistName}</p>
+                  <p>
+                    <a href={result.sourceUrl} target="_blank" rel="noreferrer noopener">
+                      Quelle öffnen ↗
+                    </a>
+                  </p>
+                </div>
+              </article>
+            ))}
+          </section>
+        </>
       ) : null}
     </div>
   );

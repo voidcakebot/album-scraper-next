@@ -1,5 +1,5 @@
 import { strict as assert } from 'node:assert';
-import { fetchHtml, parseAlbumFromHtml } from '../lib/scrape';
+import { fetchHtml, parseAlbumFromHtml, parseAlbumsFromHtml } from '../lib/scrape';
 
 describe('parseAlbumFromHtml', () => {
   it('parses og meta fields', () => {
@@ -27,9 +27,10 @@ describe('parseAlbumFromHtml', () => {
     this.timeout(20000);
     const sourceUrl = 'https://www.sputnikmusic.com/bestnewmusic';
     const html = await fetchHtml(sourceUrl, 15000);
-    const parsed = parseAlbumFromHtml(html, sourceUrl);
+    const parsed = parseAlbumsFromHtml(html, sourceUrl);
 
-    assert.ok(parsed.albumTitle.length > 0, 'albumTitle should not be empty');
-    assert.ok(parsed.coverImageUrl.startsWith('http'), 'coverImageUrl should be absolute');
+    const titles = parsed.map((item) => `${item.artistName} - ${item.albumTitle}`);
+    assert.ok(titles.includes('Converge - Love Is Not Enough'), 'Converge result should exist');
+    assert.ok(titles.includes('Mol - Dreamcrush'), 'Mol result should exist');
   });
 });

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchHtml, parseAlbumFromHtml } from '../../../lib/scrape';
+import { fetchHtml, parseAlbumsFromHtml } from '../../../lib/scrape';
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,12 +23,12 @@ export async function POST(request: NextRequest) {
 
     const timeout = Number(body.timeout ?? 15000);
     const html = await fetchHtml(parsedUrl.toString(), timeout);
-    const album = {
-      ...parseAlbumFromHtml(html, parsedUrl.toString()),
+    const albums = parseAlbumsFromHtml(html, parsedUrl.toString()).map((album) => ({
+      ...album,
       scrapedAt: new Date().toISOString()
-    };
+    }));
 
-    return NextResponse.json({ album });
+    return NextResponse.json({ albums });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown scrape error';
     return NextResponse.json({ error: message }, { status: 500 });

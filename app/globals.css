@@ -144,6 +144,12 @@ h2 { margin: 0 0 8px; font-size: 1.35rem; }
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.26);
 }
 
+.resultGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+
 .cardBody { padding: 12px; }
 .cardBody h3 { margin: 0 0 8px; }
 

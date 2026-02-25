@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { program } from 'commander';
 import pLimit from 'p-limit';
-import { fetchHtml, parseAlbumFromHtml } from '../lib/scrape';
+import { fetchHtml, parseAlbumsFromHtml } from '../lib/scrape';
 import { saveResults } from '../lib/storage';
 import type { Album, ScrapeError } from '../lib/types';
 
@@ -14,9 +14,10 @@ program.name('scrape').argument('<urls...>', 'Album page URLs to scrape').option
     console.log(`Fetching ${sourceUrl} ...`);
     try {
       const html = await fetchHtml(sourceUrl, timeout);
-      const parsed = parseAlbumFromHtml(html, sourceUrl);
-      albums.push({ ...parsed, scrapedAt: new Date().toISOString() });
-      console.log(`Parsed ${sourceUrl} -> ${parsed.artistName} / ${parsed.albumTitle}`);
+      const parsedAlbums = parseAlbumsFromHtml(html, sourceUrl);
+      const stamped = parsedAlbums.map((album) => ({ ...album, scrapedAt: new Date().toISOString() }));
+      albums.push(...stamped);
+      console.log(`Parsed ${sourceUrl} -> ${stamped.length} album(s)`);
     } catch (error) {
       const reason = error instanceof Error ? error.message : String(error);
       errors.push({ sourceUrl, reason });
