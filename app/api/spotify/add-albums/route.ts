@@ -3,6 +3,19 @@ import { processAlbums } from '../../../../lib/spotify/process';
 import { readState, writeStateAtomic } from '../../../../lib/state';
 import type { AlbumInput } from '../../../../lib/spotify/types';
 
+function resolveStatePath(inputPath?: string): string {
+  if (!inputPath || inputPath.trim() === '') {
+    return '/tmp/spotify-added-albums.json';
+  }
+
+  const trimmed = inputPath.trim();
+  if (trimmed.startsWith('/')) return trimmed;
+
+  // On Vercel/serverless, relative project paths are often read-only.
+  // Keep relative paths in /tmp to ensure write access.
+  return `/tmp/${trimmed.replace(/^\.?\/?/, '')}`;
+}
+
 function parseInputText(text: string): AlbumInput[] {
   const lines = text
     .split(/\r?\n/)
@@ -37,7 +50,7 @@ export async function POST(request: NextRequest) {
     }
 
     const inputs = parseInputText(inputText);
-    const statePath = body.statePath || 'data/spotify-added-albums.json';
+    const statePath = resolveStatePath(body.statePath);
     const state = await readState(statePath);
 
     const results = await processAlbums({
@@ -60,6 +73,7 @@ export async function POST(request: NextRequest) {
         addedNewly: results.filter((r) => r.status === 'added').length,
         failed: results.filter((r) => r.status === 'failed').length
       },
+      statePath,
       results
     });
   } catch (error) {
