@@ -1,5 +1,5 @@
 import pLimit from 'p-limit';
-import { getAccessToken, refreshAccessToken } from './auth';
+import { getAccessToken, refreshAccessToken, type SpotifyCredentials } from './auth';
 import { addAlbumsToLibrary } from './library';
 import { searchBestAlbumMatch } from './search';
 import type { AddedState, AlbumInput, ProcessResult } from './types';
@@ -11,6 +11,7 @@ type ProcessOptions = {
   concurrency: number;
   timeoutMs: number;
   dryRun?: boolean;
+  spotifyCredentials?: Partial<SpotifyCredentials>;
   onLog?: (line: string, payload?: object) => void;
 };
 
@@ -18,7 +19,7 @@ export async function processAlbums(options: ProcessOptions): Promise<ProcessRes
   const limit = pLimit(options.concurrency);
   const results: ProcessResult[] = [];
 
-  let accessToken = await getAccessToken(options.timeoutMs);
+  let accessToken = await getAccessToken(options.timeoutMs, options.spotifyCredentials);
 
   const tasks = options.inputs.map((input) =>
     limit(async () => {
@@ -80,7 +81,7 @@ export async function processAlbums(options: ProcessOptions): Promise<ProcessRes
           accessToken,
           timeoutMs: options.timeoutMs,
           onUnauthorized: async () => {
-            accessToken = await refreshAccessToken(options.timeoutMs);
+            accessToken = await refreshAccessToken(options.timeoutMs, options.spotifyCredentials);
             return accessToken;
           }
         });

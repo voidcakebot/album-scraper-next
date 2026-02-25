@@ -1,6 +1,10 @@
 import WorkflowPanel from './components/WorkflowPanel';
 
 export default function HomePage() {
+  const defaultSpotifyClientId = process.env.SPOTIFY_CLIENT_ID ?? '';
+  const defaultSpotifyClientSecret = process.env.SPOTIFY_CLIENT_SECRET ?? '';
+  const defaultSpotifyRefreshToken = process.env.SPOTIFY_REFRESH_TOKEN ?? '';
+
   return (
     <main className="container">
       <section className="hero">
@@ -21,7 +25,11 @@ export default function HomePage() {
         </p>
       </section>
 
-      <WorkflowPanel />
+      <WorkflowPanel
+        defaultSpotifyClientId={defaultSpotifyClientId}
+        defaultSpotifyClientSecret={defaultSpotifyClientSecret}
+        defaultSpotifyRefreshToken={defaultSpotifyRefreshToken}
+      />
     </main>
   );
 }

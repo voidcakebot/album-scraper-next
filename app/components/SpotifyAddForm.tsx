@@ -21,16 +21,28 @@ type ApiResult = {
 type Props = {
   inputText?: string;
   onInputTextChange?: (value: string) => void;
+  defaultSpotifyClientId?: string;
+  defaultSpotifyClientSecret?: string;
+  defaultSpotifyRefreshToken?: string;
 };
 
 const EXAMPLE = `Converge | Love Is Not Enough\nMol | Dreamcrush`;
 
-export default function SpotifyAddForm({ inputText, onInputTextChange }: Props) {
+export default function SpotifyAddForm({
+  inputText,
+  onInputTextChange,
+  defaultSpotifyClientId = '',
+  defaultSpotifyClientSecret = '',
+  defaultSpotifyRefreshToken = ''
+}: Props) {
   const [localInputText, setLocalInputText] = useState(EXAMPLE);
   const [dryRun, setDryRun] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<ApiResult | null>(null);
+  const [spotifyClientId, setSpotifyClientId] = useState(defaultSpotifyClientId);
+  const [spotifyClientSecret, setSpotifyClientSecret] = useState(defaultSpotifyClientSecret);
+  const [spotifyRefreshToken, setSpotifyRefreshToken] = useState(defaultSpotifyRefreshToken);
 
   const value = useMemo(() => inputText ?? localInputText, [inputText, localInputText]);
 
@@ -48,7 +60,15 @@ export default function SpotifyAddForm({ inputText, onInputTextChange }: Props) 
       const response = await fetch('/api/spotify/add-albums', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ inputText: value, dryRun, concurrency: 3, timeoutMs: 15000 })
+        body: JSON.stringify({
+          inputText: value,
+          dryRun,
+          concurrency: 3,
+          timeoutMs: 15000,
+          spotifyClientId,
+          spotifyClientSecret,
+          spotifyRefreshToken
+        })
       });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error ?? 'Request failed');
@@ -71,6 +91,29 @@ export default function SpotifyAddForm({ inputText, onInputTextChange }: Props) 
         rows={6}
         style={{ width: '100%', marginBottom: 10 }}
       />
+
+      <input
+        value={spotifyClientId}
+        onChange={(e) => setSpotifyClientId(e.target.value)}
+        className="urlInput"
+        placeholder="Spotify Client ID"
+        style={{ width: '100%', marginBottom: 8 }}
+      />
+      <input
+        value={spotifyClientSecret}
+        onChange={(e) => setSpotifyClientSecret(e.target.value)}
+        className="urlInput"
+        placeholder="Spotify Client Secret"
+        style={{ width: '100%', marginBottom: 8 }}
+      />
+      <input
+        value={spotifyRefreshToken}
+        onChange={(e) => setSpotifyRefreshToken(e.target.value)}
+        className="urlInput"
+        placeholder="Spotify Refresh Token"
+        style={{ width: '100%', marginBottom: 10 }}
+      />
+
       <label className="hintText" style={{ display: 'block', marginBottom: 10 }}>
         <input type="checkbox" checked={dryRun} onChange={(e) => setDryRun(e.target.checked)} /> Dry-run (nicht hinzufügen)
       </label>

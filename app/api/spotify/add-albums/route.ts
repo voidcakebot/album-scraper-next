@@ -42,6 +42,9 @@ export async function POST(request: NextRequest) {
       statePath?: string;
       timeoutMs?: number;
       concurrency?: number;
+      spotifyClientId?: string;
+      spotifyClientSecret?: string;
+      spotifyRefreshToken?: string;
     };
 
     const inputText = body.inputText?.trim() ?? '';
@@ -58,7 +61,12 @@ export async function POST(request: NextRequest) {
       state,
       concurrency: Number(body.concurrency ?? 3),
       timeoutMs: Number(body.timeoutMs ?? 15000),
-      dryRun: Boolean(body.dryRun)
+      dryRun: Boolean(body.dryRun),
+      spotifyCredentials: {
+        clientId: body.spotifyClientId,
+        clientSecret: body.spotifyClientSecret,
+        refreshToken: body.spotifyRefreshToken
+      }
     });
 
     if (!body.dryRun) {

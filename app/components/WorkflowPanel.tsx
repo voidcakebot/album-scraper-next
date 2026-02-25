@@ -12,12 +12,22 @@ type ScrapedAlbum = {
   scrapedAt: string;
 };
 
+type Props = {
+  defaultSpotifyClientId?: string;
+  defaultSpotifyClientSecret?: string;
+  defaultSpotifyRefreshToken?: string;
+};
+
 function toSpotifyInputText(albums: ScrapedAlbum[]): string {
   const lines = albums.map((a) => `${a.artistName} | ${a.albumTitle}`);
   return lines.join('\n');
 }
 
-export default function WorkflowPanel() {
+export default function WorkflowPanel({
+  defaultSpotifyClientId,
+  defaultSpotifyClientSecret,
+  defaultSpotifyRefreshToken
+}: Props) {
   const [spotifyInputText, setSpotifyInputText] = useState('Converge | Love Is Not Enough\nMol | Dreamcrush');
 
   return (
@@ -29,7 +39,13 @@ export default function WorkflowPanel() {
           }
         }}
       />
-      <SpotifyAddForm inputText={spotifyInputText} onInputTextChange={setSpotifyInputText} />
+      <SpotifyAddForm
+        inputText={spotifyInputText}
+        onInputTextChange={setSpotifyInputText}
+        defaultSpotifyClientId={defaultSpotifyClientId}
+        defaultSpotifyClientSecret={defaultSpotifyClientSecret}
+        defaultSpotifyRefreshToken={defaultSpotifyRefreshToken}
+      />
     </>
   );
 }
