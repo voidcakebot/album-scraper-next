@@ -1,5 +1,5 @@
 import { strict as assert } from 'node:assert';
-import { parseAlbumFromHtml } from '../lib/scrape';
+import { fetchHtml, parseAlbumFromHtml } from '../lib/scrape';
 
 describe('parseAlbumFromHtml', () => {
   it('parses og meta fields', () => {
@@ -21,5 +21,15 @@ describe('parseAlbumFromHtml', () => {
   it('throws if no image can be found', () => {
     const html = `<html><head><title>Album by Artist</title></head><body><h1>Album</h1></body></html>`;
     assert.throws(() => parseAlbumFromHtml(html, 'https://example.org'));
+  });
+
+  it('parses Sputnikmusic bestnewmusic page (integration)', async function () {
+    this.timeout(20000);
+    const sourceUrl = 'https://www.sputnikmusic.com/bestnewmusic';
+    const html = await fetchHtml(sourceUrl, 15000);
+    const parsed = parseAlbumFromHtml(html, sourceUrl);
+
+    assert.ok(parsed.albumTitle.length > 0, 'albumTitle should not be empty');
+    assert.ok(parsed.coverImageUrl.startsWith('http'), 'coverImageUrl should be absolute');
   });
 });
