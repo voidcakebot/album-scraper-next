@@ -23,14 +23,19 @@ describe('parseAlbumFromHtml', () => {
     assert.throws(() => parseAlbumFromHtml(html, 'https://example.org'));
   });
 
-  it('parses Sputnikmusic bestnewmusic page (integration)', async function () {
+  it('parses Sputnikmusic bestnewmusic page structure robustly (integration)', async function () {
     this.timeout(20000);
     const sourceUrl = 'https://www.sputnikmusic.com/bestnewmusic';
     const html = await fetchHtml(sourceUrl, 15000);
     const parsed = parseAlbumsFromHtml(html, sourceUrl);
 
-    const titles = parsed.map((item) => `${item.artistName} - ${item.albumTitle}`);
-    assert.ok(titles.includes('Converge - Love Is Not Enough'), 'Converge result should exist');
-    assert.ok(titles.includes('Mol - Dreamcrush'), 'Mol result should exist');
+    assert.ok(parsed.length >= 5, 'should parse multiple albums from bestnewmusic listing');
+
+    for (const album of parsed) {
+      assert.ok(album.artistName.length > 0, 'artistName should not be empty');
+      assert.ok(album.albumTitle.length > 0, 'albumTitle should not be empty');
+      assert.ok(album.coverImageUrl.startsWith('http'), 'coverImageUrl should be absolute');
+      assert.ok(album.sourceUrl.startsWith('http'), 'sourceUrl should be absolute');
+    }
   });
 });
