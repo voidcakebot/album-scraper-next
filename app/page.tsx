@@ -1,4 +1,5 @@
 import UrlGoForm from './components/UrlGoForm';
+import SpotifyAddForm from './components/SpotifyAddForm';
 
 export default function HomePage() {
   return (
@@ -21,6 +22,8 @@ export default function HomePage() {
           Ziel: Aus den gesammelten Alben eine Liste bauen, die wir in Spotify-Alben überführen können.
         </p>
       </section>
+
+      <SpotifyAddForm />
     </main>
   );
 }

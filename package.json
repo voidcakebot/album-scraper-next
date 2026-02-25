@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "next start",
     "scrape": "tsx scripts/scrape.ts",
-    "test": "node --import tsx ./node_modules/mocha/bin/mocha.js tests/**/*.test.ts"
+    "spotify:add-albums": "tsx scripts/spotify-add-albums.ts",
+    "test:mocha": "node --import tsx ./node_modules/mocha/bin/mocha.js tests/**/*.test.ts",
+    "test:vitest": "vitest run tests-spotify", 
+    "test": "npm run test:mocha && npm run test:vitest"
   },
   "dependencies": {
     "cheerio": "^1.1.2",
@@ -24,8 +27,10 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "mocha": "^11.7.2",
+    "nock": "^14.0.10",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^2.1.9"
   },
   "packageManager": "pnpm@10.16.1"
 }
