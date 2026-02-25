@@ -1,0 +1,8 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: #0f1115; color: #f2f2f2; }
+a { color: inherit; }
+.container { max-width: 1080px; margin: 0 auto; padding: 24px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.card { background: #181b22; border: 1px solid #2c3140; border-radius: 12px; overflow: hidden; }
+.cardBody { padding: 12px; }
+.muted { color: #a7b0c0; }
