@@ -26,7 +26,7 @@ type Props = {
   defaultSpotifyRefreshToken?: string;
 };
 
-const EXAMPLE = `Converge | Love Is Not Enough\nMol | Dreamcrush`;
+const EXAMPLE = '';
 
 export default function SpotifyAddForm({
   inputText,

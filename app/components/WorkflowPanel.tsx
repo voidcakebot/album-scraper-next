@@ -28,7 +28,7 @@ export default function WorkflowPanel({
   defaultSpotifyClientSecret,
   defaultSpotifyRefreshToken
 }: Props) {
-  const [spotifyInputText, setSpotifyInputText] = useState('Converge | Love Is Not Enough\nMol | Dreamcrush');
+  const [spotifyInputText, setSpotifyInputText] = useState('');
 
   return (
     <>
